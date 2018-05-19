@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SQL Demo - GROUP BY Query</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<table>
+    <caption>GROUP BY Query</caption>
+    <caption class="explain">
+        This query returns all data for all weapons where there is a Saturation Curve with Level 8 greater than the
+        weapon's physical curve index.
+        <br />
+        <br />
+        SELECT AW.Wep_Class, count(AW.Wep_Class) AS Count
+        FROM All_Weapons AW
+        GROUP BY AW.Wep_Class
+        ;
+    </caption>
+    <br />
+    <tr>
+        <th>Class</th>
+        <th>Count</th>
+    </tr>
+    <% for (var i = 0; i < weapons.length; i++){ %>
+    <tr id="weapon_data">
+        <td><%= weapons[i].Wep_Class %></td>
+        <td><%= weapons[i].Count %></td>
+    </tr>
+    <% } %>
+</table>
+</body>
+</html>

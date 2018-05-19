@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SQL Demo - EXISTS Subquery Query</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<table>
+    <caption>EXISTS Subquery Query</caption>
+    <caption class="explain">
+        This query returns all data for each weapon with a Luck Scaling coeficient, albeit in a roundabout way.
+        <br />
+        <br />
+        SELECT AW.* FROM All_Weapons AW
+        WHERE EXISTS (SELECT AW.Luk_Coef FROM All_Weapons WHERE AW.Luk_Coef IS NOT NULL)
+        ;
+    </caption>
+    <br />
+    <tr>
+        <th rowspan="2" style="line-height: 1">Name, Infusion<br><div class="subtext">click to go to weapon page, edit, delete</div></th>
+        <th rowspan="2">Class</th>
+        <th rowspan="2">Critical<br>Modifier</th>
+        <th rowspan="2">Durability</th>
+        <th rowspan="2">Weight</th>
+        <th rowspan="2">Upgrade<br>Material</th>
+        <th colspan="5">Base Damage</th>
+        <th colspan="4">Scaling</th>
+        <th colspan="4">Requirements</th>
+    </tr>
+    <tr>
+        <th>Physical</th>
+        <th>Magic</th>
+        <th>Fire</th>
+        <th>Lightning</th>
+        <th>Dark</th>
+        <th>Strength</th>
+        <th>Dexterity</th>
+        <th>Intelligence</th>
+        <th>Faith</th>
+        <th>Strength</th>
+        <th>Dexterity</th>
+        <th>Intelligence</th>
+        <th>Faith</th>
+    </tr>
+    <% for (var i = 0; i < weapons.length; i++){ %>
+    <tr id="weapon_data">
+        <td><%= weapons[i].Wep_Name %>, <%= weapons[i].Wep_Infus %></td>
+        <td><%= weapons[i].Wep_Class %></td>
+        <td><%= weapons[i].Wep_Crit %></td>
+        <td><%= weapons[i].Wep_Dur %></td>
+        <td><%= weapons[i].Wep_Weight %></td>
+        <td><%= weapons[i].Is_Scale_Up %></td>
+        <td><%= weapons[i].Phy_Dmg %></td>
+        <td><%= weapons[i].Mag_Dmg %></td>
+        <td><%= weapons[i].Fir_Dmg %></td>
+        <td><%= weapons[i].Lit_Dmg %></td>
+        <td><%= weapons[i].Drk_Dmg %></td>
+        <td><%= weapons[i].Str_Grad %></td>
+        <td><%= weapons[i].Dex_Grad %></td>
+        <td><%= weapons[i].Int_Grad %></td>
+        <td><%= weapons[i].Fat_Grad %></td>
+        <td><%= weapons[i].Str_Req %></td>
+        <td><%= weapons[i].Dex_Req %></td>
+        <td><%= weapons[i].Int_Req %></td>
+        <td><%= weapons[i].Fat_Req %></td>
+    </tr>
+    <% } %>
+</table>
+</body>
+</html>

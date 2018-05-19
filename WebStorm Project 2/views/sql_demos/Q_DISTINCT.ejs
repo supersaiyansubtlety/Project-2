@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SQL Demo - DISTINCT Query</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<table>
+    <caption>DISTINCT Query</caption>
+    <caption class="explain">
+        This query returns each unique weapon name.
+        <br />
+        <br />
+        SELECT DISTINCT Wep_Name FROM All_Weapons;
+        ;
+    </caption>
+    <br />
+    <tr>
+        <th style="line-height: 1">Name</th>
+
+    </tr>
+
+    <% for (var i = 0; i < weapons.length; i++){ %>
+    <tr id="weapon_data">
+        <td><%= weapons[i].Wep_Name %></td>
+    </tr>
+    <% } %>
+</table>
+</body>
+</html>

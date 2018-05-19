@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SQL Demo - Subquery in a JOIN Query</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<table>
+    <caption>Subquery in a JOIN Query</caption>
+    <caption class="explain">
+        This query returns the physical saturation curve index for all weapons.
+        <br />
+        <br />
+        SELECT WD.Wep_Name, WD.Wep_Infus, WC.Crv FROM Wep_Data WD
+        LEFT JOIN Wep_Curve WC ON WC.Crv = (SELECT SC.Curve_Ind
+        FROM Sat_Curve SC
+        WHERE SC.Curve_Ind = WC.Crv)
+        AND WC.Crv_Wep_Name = WD.Wep_Name
+        AND WC.Crv_Wep_Infus = WD.Wep_Infus
+        AND WC.Crv_Type = 'PHY'
+        ;
+    </caption>
+    <br />
+    <tr>
+        <th>Name, Infusion</th>
+        <th>Physical<br />Saturation Curve</th>
+    </tr>
+    <% for (var i = 0; i < weapons.length; i++){ %>
+    <tr id="weapon_data">
+        <td><%= weapons[i].Wep_Name %>, <%= weapons[i].Wep_Infus %></td>
+        <td><%= weapons[i].Crv %></td>
+    </tr>
+    <% } %>
+</table>
+</body>
+</html>

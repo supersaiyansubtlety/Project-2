@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SQL Demo - JOIN GROUP HAVING derived Query</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<table>
+    <caption>JOIN GROUP HAVING derived Query</caption>
+    <caption class="explain">
+        This query returns the maximum base physical damage for each weapon class where this damage
+        is over 100. It also appends the physical scaling curve index of the weapon with the max damage.
+        <br />
+        <br />
+        SELECT AW.Wep_Class, MAX(AW.Phy_Dmg) AS Max_Dmg, WC.Crv FROM All_Weapons AW
+        JOIN Wep_Curve WC ON WC.Crv_Wep_Name = AW.Wep_Name AND WC.Crv_Wep_Infus = AW.Wep_Infus
+        WHERE WC.Crv_Type = 'PHY'
+        GROUP BY AW.Wep_Class
+        HAVING Max_Dmg > 100
+        ;
+    </caption>
+    <br />
+    <tr>
+        <th>Weapon Class</th>
+        <th>Max Physical Damage</th>
+        <th>Physical Scaling<br />Curve Index</th>
+    </tr>
+    <% for (var i = 0; i < weapons.length; i++){ %>
+    <tr id="weapon_data">
+        <td><%= weapons[i].Wep_Class %></td>
+        <td><%= weapons[i].Max_Dmg %></td>
+        <td><%= weapons[i].Crv %></td>
+    </tr>
+    <% } %>
+</table>
+</body>
+</html>

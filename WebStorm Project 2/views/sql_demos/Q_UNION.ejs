@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SQL Demo - UNION Query</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<table>
+    <caption>UNION Query</caption>
+    <caption class="explain">
+        This query returns three basic data for the Plastic Goose weapon, transposed into a column using union.
+        <br />
+        <br />
+        SELECT Wep_Crit AS Basic_Data FROM All_Weapons
+        WHERE Wep_Name = 'Plastic Goose' AND Wep_Infus = 'Normal'
+        UNION ALL
+        SELECT Wep_Dur AS Basic_Data FROM All_Weapons
+        WHERE Wep_Name = 'Plastic Goose' AND Wep_Infus = 'Normal'
+        UNION ALL
+        SELECT Wep_Weight AS Basic_Data FROM All_Weapons
+        WHERE Wep_Name = 'Plastic Goose' AND Wep_Infus = 'Normal'
+        ;
+    </caption>
+    <br />
+    <tr>
+        <th colspan="2">Plastic Goose</th>
+    </tr>
+    <tr><th>Critical<br />Modifier</th><td><%= weapons[0].Basic_Data %></td></tr>
+    <tr><th>Durability</th><td><%= weapons[1].Basic_Data %></td></tr>
+    <tr><th>Weight</th><td><%= weapons[2].Basic_Data %></td></tr>
+</table>
+</body>
+</html>
