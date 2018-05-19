@@ -26,11 +26,27 @@ exports.insert = function (params, callback) {
     });
 };
 
+exports.update = function (params, callback) {
+    var query = "CALL update_wep_data(?,?,?,?,?,?,? ,0,0,0,0,0 ,?,?,?,?,?, ?,?,?,? ,?,?,?,? ,0,0,0,0,0)";
+    var queryData = [
+        params.Wep_Name, params.Wep_Infus, params.Wep_Class,
+        params.Wep_Crit, params.Wep_Dur, params.Wep_Weight, params.Is_Scale_Up,
+        params.Phy_Dmg, params.Mag_Dmg, params.Fir_Dmg, params.Lit_Dmg, params.Drk_Dmg,
+        params.Str_Grad, params.Dex_Grad, params.Int_Grad, params.Fat_Grad,
+        params.Str_Req, params.Dex_Req, params.Int_Req, params.Fat_Req
+    ];
+    console.log(queryData);
+
+    connection.query(query, queryData, function (err, result) {
+        console.log(result);
+        callback(err,result);
+    });
+};
+
 exports.getinfo = function (Wep_Name, Wep_Infus, callback) {
     var query = "CALL get_wep_info(?,?)";
     var queryData = [Wep_Name, Wep_Infus];
-    /*console.log(query);
-    console.log(queryData);*/
+
     connection.query(query, queryData, function (err, result) {
         callback(err,result);
     });

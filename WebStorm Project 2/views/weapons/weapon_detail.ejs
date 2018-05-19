@@ -2,46 +2,10 @@
 <html>
 <head>
     <title>Weapons - All</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
-<style>
-    body{
-        font-family: Calibri, Arial, sans-serif;
-    }
-    table, th, td {
-        width: 1em;
-        min-width: 1em;
-        max-width: 30em;
-        border: 1px solid black;
-        border-collapse: collapse;
-        white-space: nowrap;
-    }
-    th, td {
-        padding: .2em;
-    }
-    th {
-        text-align: center;
-    }
-    caption{
-        text-align: left;
-        font-size: 2em;
-    }
-    input{
-        width: calc(100% - .5em);
-        min-width: 4em;
-        max-width: 30em;
-    }
-    div.subtext {
-        font-size: .7em;
-        color: dimgray;
-        font-style: italic;
-        font-weight: normal;
-    }
-    caption{
-        font-variant: small-caps;
-    }
-</style>
 <body>
-<form action="/insert" method="get">
+<form action="/update" method="get">
     <table>
         <caption>Weapons</caption>
         <tr>
@@ -72,144 +36,118 @@
         </tr>
         <tr style="vertical-align: top;">
             <td>
-                <!-- If below I put 'value = "<!--% console.log(weapon[0].Wep_Name) %--><!--"'
-                it logs the correct weapon name, but as is there is no initial value for the Wep_Name input element.
-                This is strange, as the way I stored the weapon table in index.js {weapon: result[0]}
-                was intended to make it accessible with weapon.Wep_Name (no [0])-->
-                <input name="Wep_Name" type = "text" value = "<% weapon[0].Wep_Name %>" placeholder = "Weapon Name" style="width: auto; float: left" required>,
-                <select id = wep_infus name="Wep_Infus" style="width: auto; float: right">
-                    <option value = "Normal">Normal
-                    <option disabled>─────</option>
-                    <option value = "Raw">Raw
-                    <option value = "Fire">Fire
-                    <option value = "Deep">Deep
-                    <option disabled>─────</option>
-                    <option value = "Heavy">Heavy
-                    <option value = "Sharp">Sharp
-                    <option value = "Refined">Refined
-                    <option disabled>─────</option>
-                    <option value = "Simple">Simple
-                    <option value = "Crystal">Crystal
-                    <option disabled>─────</option>
-                    <option value = "Blessed">Blessed
-                    <option value = "Lightning">Lightning
-                    <option disabled>─────</option>
-                    <option value = "Chaos">Chaos
-                    <option value = "Dark">Dark
-                    <option disabled>─────</option>
-                    <option value = "Blood">Blood
-                    <option value = "Poison">Poison
-                    <option value = "Hollow">Hollow
-                </select>
+                <input name="Wep_Name" type = "hidden" value = " <%= weapon.Wep_Name %>" style="width: auto;" required/><%= weapon.Wep_Name %>,
+                <input name="Wep_Infus" type = "hidden" value = " <%= weapon.Wep_Infus %>"/><%= weapon.Wep_Infus%>
+
             </td>
             <td>
                 <select name="Wep_Class">
-                    <option value = "Dagger">Dagger
-                    <option value = "Straight Sword">Straight Sword
-                    <option value = "Greatsword">Greatsword
-                    <option value = "Ultra Greatsword">Ultra Greatsword
+                    <option value = "Dagger" <% if(weapon.Wep_Class==="Dagger"){ %> selected <% } %>>Dagger
+                    <option value = "Straight Sword" <% if(weapon.Wep_Class==="Straight Sword"){ %> selected <% } %>>Straight Sword
+                    <option value = "Greatsword" <% if(weapon.Wep_Class==="Greatsword"){ %> selected <% } %>>Greatsword
+                    <option value = "Ultra Greatsword" <% if(weapon.Wep_Class==="Ultra Greatsword"){ %> selected <% } %>>Ultra Greatsword
                     <option disabled>─────────</option>
-                    <option value = "Curved Sword">Curved Sword
-                    <option value = "Curved Greatsword">Curved Greatsword
+                    <option value = "Curved Sword" <% if(weapon.Wep_Class==="Curved Sword"){ %> selected <% } %>>Curved Sword
+                    <option value = "Curved Greatsword" <% if(weapon.Wep_Class==="Curved Greatsword"){ %> selected <% } %>>Curved Greatsword
                     <option disabled>─────────</option>
-                    <option value = "Katana">Katana
+                    <option value = "Katana" <% if(weapon.Wep_Class==="Katana"){ %> selected <% } %>>Katana
                     <option disabled>─────────</option>
-                    <option value = "Piercing Sword">Piercing Sword
+                    <option value = "Piercing Sword" <% if(weapon.Wep_Class==="Piercing Sword"){ %> selected <% } %>>Piercing Sword
                     <option disabled>─────────</option>
-                    <option value = "Axe">Axe
-                    <option value = "Greataxe">Greataxe
+                    <option value = "Axe" <% if(weapon.Wep_Class==="Axe"){ %> selected <% } %>>Axe
+                    <option value = "Greataxe" <% if(weapon.Wep_Class==="Greataxe"){ %> selected <% } %>>Greataxe
                     <option disabled>─────────</option>
-                    <option value = "Hammer">Hammer
-                    <option value = "Great Hammer">Great Hammer
+                    <option value = "Hammer" <% if(weapon.Wep_Class==="Hammer"){ %> selected <% } %>>Hammer
+                    <option value = "Great Hammer" <% if(weapon.Wep_Class==="Great Hammer"){ %> selected <% } %>>Great Hammer
                     <option disabled>─────────</option>
-                    <option value = "Claw">Claw
-                    <option value = "Fist">Fist
+                    <option value = "Claw" <% if(weapon.Wep_Class==="Claw"){ %> selected <% } %>>Claw
+                    <option value = "Fist" <% if(weapon.Wep_Class==="Fist"){ %> selected <% } %>>Fist
                     <option disabled>─────────</option>
-                    <option value = "Spear">Spear
-                    <option value = "Pike">Pike
+                    <option value = "Spear" <% if(weapon.Wep_Class==="Spear"){ %> selected <% } %>>Spear
+                    <option value = "Pike" <% if(weapon.Wep_Class==="Pike"){ %> selected <% } %>>Pike
                     <option disabled>─────────</option>
-                    <option value = "Halberd">Halberd
-                    <option value = "Reaper">Reaper
+                    <option value = "Halberd" <% if(weapon.Wep_Class==="Halberd"){ %> selected <% } %>>Halberd
+                    <option value = "Reaper" <% if(weapon.Wep_Class==="Reaper"){ %> selected <% } %>>Reaper
                     <option disabled>─────────</option>
-                    <option value = "Whip">Whip
+                    <option value = "Whip" <% if(weapon.Wep_Class==="Whip"){ %> selected <% } %>>Whip
                     <option disabled>─────────</option>
-                    <option value = "Bow">Bow
-                    <option value = "Greatbow">Greatbow
-                    <option value = "Crossbow">Crossbow
+                    <option value = "Bow" <% if(weapon.Wep_Class==="Bow"){ %> selected <% } %>>Bow
+                    <option value = "Greatbow" <% if(weapon.Wep_Class==="Greatbow"){ %> selected <% } %>>Greatbow
+                    <option value = "Crossbow" <% if(weapon.Wep_Class==="Crossbow"){ %> selected <% } %>>Crossbow
                     <option disabled>─────────</option>
-                    <option value = "Stave">Stave
-                    <option value = "Pyromancy Flame">Pyromancy Flame
-                    <option value = "Talisman">Talisman
-                    <option value = "Sacred Chime">Sacred Chime
+                    <option value = "Stave" <% if(weapon.Wep_Class==="Stave"){ %> selected <% } %>>Stave
+                    <option value = "Pyromancy Flame" <% if(weapon.Wep_Class==="Pyromancy Flame"){ %> selected <% } %>>Pyromancy Flame
+                    <option value = "Talisman" <% if(weapon.Wep_Class==="Talisman"){ %> selected <% } %>>Talisman
+                    <option value = "Sacred Chime" <% if(weapon.Wep_Class==="Sacred Chime"){ %> selected <% } %>>Sacred Chime
                     <option disabled>─────────</option>
-                    <option value = "Small Shield">Small Shield
-                    <option value = "Medium Shield">Medium Shield
-                    <option value = "Great Shield">Great Shield
+                    <option value = "Small Shield" <% if(weapon.Wep_Class==="Small Shield"){ %> selected <% } %>>Small Shield
+                    <option value = "Medium Shield" <% if(weapon.Wep_Class==="Medium Shield"){ %> selected <% } %>>Medium Shield
+                    <option value = "Great Shield" <% if(weapon.Wep_Class==="Great Shield"){ %> selected <% } %>>Great Shield
                 </select>
             </td>
-            <td><input name="Wep_Crit" type = "number" min = "100" step = "1" placeholder = "100+"></td>
-            <td><input name="Wep_Dur" type = "number" min = "0" step = "1" placeholder = "0+"></td>
-            <td><input name="Wep_Weight" type = "number" min = "0" step = ".1" placeholder = "0.0+"></td>
+            <td><input name="Wep_Crit" type = "number" min = "100" step = "1" placeholder = "100+" value= <%= weapon.Wep_Crit %>></td>
+            <td><input name="Wep_Dur" type = "number" min = "0" step = "1" placeholder = "0+" value= <%= weapon.Wep_Dur %>></td>
+            <td><input name="Wep_Weight" type = "number" min = "0" step = ".1" placeholder = "0.0+" value= <%= weapon.Wep_Weight %>></td>
             <td>
                 <select name="Is_Scale_Up">
                     <option value = "2">Titanite
-                    <option value = "1">Twinkling Titanite
-                    <option value = "0">Titanite Scale
+                    <option value = "1" <% if(weapon.Is_Scale_Up==="1"){ %> selected <% } %>>Twinkling Titanite
+                    <option value = "0" <% if(weapon.Is_Scale_Up==="0"){ %> selected <% } %>>Titanite Scale
                 </select>
             </td>
-            <td><input name="Phy_Dmg" type = "number" min = "0" step = "1" placeholder = "0+"></td>
-            <td><input name="Mag_Dmg" type = "number" min = "0" step = "1" placeholder = "0+"></td>
-            <td><input name="Fir_Dmg" type = "number" min = "0" step = "1" placeholder = "0+"></td>
-            <td><input name="Lit_Dmg" type = "number" min = "0" step = "1" placeholder = "0+"></td>
-            <td><input name="Drk_Dmg" type = "number" min = "0" step = "1" placeholder = "0+"></td>
+            <td><input name="Phy_Dmg" type = "number" min = "0" step = ".1" placeholder = "0.0+" value= <%= weapon.Phy_Dmg %>></td>
+            <td><input name="Mag_Dmg" type = "number" min = "0" step = ".1" placeholder = "0.0+" value= <%= weapon.Mag_Dmg %>></td>
+            <td><input name="Fir_Dmg" type = "number" min = "0" step = ".1" placeholder = "0.0+" value= <%= weapon.Fir_Dmg %>></td>
+            <td><input name="Lit_Dmg" type = "number" min = "0" step = ".1" placeholder = "0.0+" value= <%= weapon.Lit_Dmg %>></td>
+            <td><input name="Drk_Dmg" type = "number" min = "0" step = ".1" placeholder = "0.0+" value= <%= weapon.Drk_Dmg %>></td>
             <td>
                 <select name="Str_Grad" style="width:100%">
                     <option value = "-">-
-                    <option value = "S">S
-                    <option value = "A">A
-                    <option value = "B">B
-                    <option value = "C">C
-                    <option value = "D">D
-                    <option value = "E">E
+                    <option value = "S" <% if(weapon.Str_Grad==="S"){ %> selected <% } %>>S
+                    <option value = "A" <% if(weapon.Str_Grad==="A"){ %> selected <% } %>>A
+                    <option value = "B" <% if(weapon.Str_Grad==="B"){ %> selected <% } %>>B
+                    <option value = "C" <% if(weapon.Str_Grad==="C"){ %> selected <% } %>>C
+                    <option value = "D" <% if(weapon.Str_Grad==="D"){ %> selected <% } %>>D
+                    <option value = "E" <% if(weapon.Str_Grad==="E"){ %> selected <% } %>>E
                 </select>
             </td>
             <td>
                 <select name="Dex_Grad"style="width:100%">
                     <option value = "-">-
-                    <option value = "S">S
-                    <option value = "A">A
-                    <option value = "B">B
-                    <option value = "C">C
-                    <option value = "D">D
-                    <option value = "E">E
+                    <option value = "S" <% if(weapon.Dex_Grad==="S"){ %> selected <% } %>>S
+                    <option value = "A" <% if(weapon.Dex_Grad==="A"){ %> selected <% } %>>A
+                    <option value = "B" <% if(weapon.Dex_Grad==="B"){ %> selected <% } %>>B
+                    <option value = "C" <% if(weapon.Dex_Grad==="C"){ %> selected <% } %>>C
+                    <option value = "D" <% if(weapon.Dex_Grad==="D"){ %> selected <% } %>>D
+                    <option value = "E" <% if(weapon.Dex_Grad==="E"){ %> selected <% } %>>E
                 </select>
             </td>
             <td>
                 <select name="Int_Grad"style="width:100%">
                     <option value = "-">-
-                    <option value = "S">S
-                    <option value = "A">A
-                    <option value = "B">B
-                    <option value = "C">C
-                    <option value = "D">D
-                    <option value = "E">E
+                    <option value = "S" <% if(weapon.Int_Grad==="S"){ %> selected <% } %>>S
+                    <option value = "A" <% if(weapon.Int_Grad==="A"){ %> selected <% } %>>A
+                    <option value = "B" <% if(weapon.Int_Grad==="B"){ %> selected <% } %>>B
+                    <option value = "C" <% if(weapon.Int_Grad==="C"){ %> selected <% } %>>C
+                    <option value = "D" <% if(weapon.Int_Grad==="D"){ %> selected <% } %>>D
+                    <option value = "E" <% if(weapon.Int_Grad==="E"){ %> selected <% } %>>E
                 </select>
             </td>
             <td>
                 <select name="Fat_Grad"style="width:100%">
                     <option value = "-">-
-                    <option value = "S">S
-                    <option value = "A">A
-                    <option value = "B">B
-                    <option value = "C">C
-                    <option value = "D">D
-                    <option value = "E">E
+                    <option value = "S" <% if(weapon.Fat_Grad==="S"){ %> selected <% } %>>S
+                    <option value = "A" <% if(weapon.Fat_Grad==="A"){ %> selected <% } %>>A
+                    <option value = "B" <% if(weapon.Fat_Grad==="B"){ %> selected <% } %>>B
+                    <option value = "C" <% if(weapon.Fat_Grad==="C"){ %> selected <% } %>>C
+                    <option value = "D" <% if(weapon.Fat_Grad==="D"){ %> selected <% } %>>D
+                    <option value = "E" <% if(weapon.Fat_Grad==="E"){ %> selected <% } %>>E
                 </select>
             </td>
-            <td><input name="Str_Req" type = "number" min = "0" max = "99" step = "1" placeholder = "0-99"></td>
-            <td><input name="Dex_Req" type = "number" min = "0" max = "99" step = "1" placeholder = "0-99"></td>
-            <td><input name="Int_Req" type = "number" min = "0" max = "99" step = "1" placeholder = "0-99"></td>
-            <td><input name="Fat_Req" type = "number" min = "0" max = "99" step = "1" placeholder = "0-99"></td>
+            <td><input name="Str_Req" type = "number" min = "0" max = "99" step = "1" placeholder = "0-99" value= <%= weapon.Str_Req %>></td>
+            <td><input name="Dex_Req" type = "number" min = "0" max = "99" step = "1" placeholder = "0-99" value= <%= weapon.Dex_Req %>></td>
+            <td><input name="Int_Req" type = "number" min = "0" max = "99" step = "1" placeholder = "0-99" value= <%= weapon.Int_Req %>></td>
+            <td><input name="Fat_Req" type = "number" min = "0" max = "99" step = "1" placeholder = "0-99" value= <%= weapon.Fat_Req %>></td>
         </tr>
         <tr>
             <td colspan="20">
@@ -219,5 +157,6 @@
 
     </table>
 </form>
+
 </body>
 </html>

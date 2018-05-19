@@ -1,8 +1,61 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-family: Calibri, Arial, sans-serif;
+}
+
+table, th, td {
+    width: 1em;
+    min-width: 3em;
+    max-width: 30em;
+    border: 1px solid black;
+    border-collapse: collapse;
+    white-space: nowrap;
+}
+
+th, td {
+    padding: .2em;
+}
+
+th {
+    text-align: center;
+    font-family: 'Helvetica Neue', Calibri, Arial, sans-serif;
+}
+
+caption{
+    font-family: 'Helvetica Neue', Calibri, Arial, sans-serif;
+    text-align: left;
+    font-size: 2em;
+    font-variant: small-caps;
+}
+
+caption.explain{
+    font-style: italic;
+    font-size: 1em;
+    font-variant: normal;
+    white-space: normal;
+    color: #3e3e3e;
+
+}
+
+input{
+    width: calc(100% - .5em);
+    min-width: 4em;
+    max-width: 30em;
+}
+
+div.subtext {
+    font-size: .7em;
+    color: dimgray;
+    font-style: italic;
+    font-weight: normal;
+    font-family: Calibri, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
+}
+
+ul {
+    list-style-type: circle;
 }
